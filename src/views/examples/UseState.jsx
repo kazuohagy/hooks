@@ -16,6 +16,12 @@ const UseState = (props) => {
       <div className="center">
         <span className="text">{count}</span>
         <div>
+          <button
+            className="btn"
+            onClick={() => setCount((cuttect) => cuttect - 1000)}
+          >
+            -1000
+          </button>
           <button className="btn" onClick={() => setCount(count - 1)}>
             -1
           </button>
