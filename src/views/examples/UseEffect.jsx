@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PageTitle from "../../components/layout/PageTitle";
+import SectionTitle from "../../components/layout/SectionTitle";
 
 function calcFatorial(num) {
   const number = parseInt(num);
@@ -36,6 +37,7 @@ const UseEffect = (props) => {
         title="Hook UseEffect"
         subtitle="Permite executar efeitos colaterais em componentes funcionais!"
       />
+      <SectionTitle title="Exercise 1" />
       <div className="center">
         <span className="text">Fatorial: </span>
         <span className="text red">
@@ -48,6 +50,7 @@ const UseEffect = (props) => {
           onChange={(e) => setNumber(e.target.value)}
         />
       </div>
+      <SectionTitle title="Exercise 2" />
     </div>
   );
 };
