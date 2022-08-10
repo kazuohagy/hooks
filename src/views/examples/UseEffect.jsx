@@ -12,21 +12,21 @@ function calcFatorial(num) {
   }
   return calcFatorial(number - 1) * number;
 }
-function calcParImpar(parImpar) {
-  const parImpar = parse(parImpar);
+function mario(parImpar) {
+  const ifpar = parseInt(parImpar);
 
-  return parImpar % 2 === 0;
+  return ifpar % 2 === 0;
 }
 const UseEffect = (props) => {
   const [number, setNumber] = useState(1);
   const [parImpar, setParImpar] = useState(0);
-  const [fatorial, setFatorial] = useState(1);
+  const [fatorial, setFatorial] = useState(true);
   useEffect(
     function () {
       setFatorial(calcFatorial(number));
-      setParImpar(calcParImpar(parImpar));
+      setParImpar(mario(parImpar));
     },
-    [number]
+    [number, parImpar]
   );
   useEffect(
     function () {
@@ -59,7 +59,9 @@ const UseEffect = (props) => {
       <SectionTitle title="Exercise 2" />
       <div className="center">
         <span className="text">Par ou impar?:</span>
-        <input type="number" className="input" onChange />
+
+        <span className="text red">{parImpar ? "Par" : "Impar"}</span>
+        <input type="number" value={parImpar} className="input" onChange />
       </div>
     </div>
   );
