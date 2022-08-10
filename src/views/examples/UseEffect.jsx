@@ -24,9 +24,14 @@ const UseEffect = (props) => {
   useEffect(
     function () {
       setFatorial(calcFatorial(number));
+    },
+    [number]
+  );
+  useEffect(
+    function () {
       setParImpar(mario(parImpar));
     },
-    [number, parImpar]
+    [parImpar]
   );
   useEffect(
     function () {
