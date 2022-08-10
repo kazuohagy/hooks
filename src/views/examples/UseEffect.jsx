@@ -51,6 +51,10 @@ const UseEffect = (props) => {
         />
       </div>
       <SectionTitle title="Exercise 2" />
+      <div className="center">
+        <span className="text">Par ou impar?:</span>
+        <input type="number" className="input" onChange />
+      </div>
     </div>
   );
 };
