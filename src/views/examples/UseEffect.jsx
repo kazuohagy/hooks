@@ -12,13 +12,19 @@ function calcFatorial(num) {
   }
   return calcFatorial(number - 1) * number;
 }
+function calcParImpar(parImpar) {
+  const parImpar = parse(parImpar);
 
+  return parImpar % 2 === 0;
+}
 const UseEffect = (props) => {
   const [number, setNumber] = useState(1);
+  const [parImpar, setParImpar] = useState(0);
   const [fatorial, setFatorial] = useState(1);
   useEffect(
     function () {
       setFatorial(calcFatorial(number));
+      setParImpar(calcParImpar(parImpar));
     },
     [number]
   );
