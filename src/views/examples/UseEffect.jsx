@@ -31,19 +31,13 @@ const UseEffect = (props) => {
     [fatorial]
   );
   //   Aula 2;
-  function mario(parImpar) {
-    const ifpar = parseInt(parImpar);
 
-    return ifpar;
-  }
   const [numero, setNumero] = useState(1);
   const [parImpar, setParImpar] = useState(0);
-  useEffect(
-    function () {
-      setParImpar(mario(parImpar));
-    },
-    [parImpar]
-  );
+  useEffect(() => {
+    const mario = numero % 2 === 0 ? "par" : "impar";
+    setParImpar(mario);
+  });
   return (
     <div className="UseEffect">
       <PageTitle
@@ -67,12 +61,12 @@ const UseEffect = (props) => {
       <div className="center">
         <span className="text">Par ou impar?:</span>
 
-        <span className="text red">{parImpar ? "Par" : "Impar"}</span>
+        <span className="text red">{parImpar}</span>
         <input
           type="number"
-          value={parImpar}
+          value={numero}
           className="input"
-          onChange={(m) => setParImpar(m.target.value)}
+          onChange={(m) => setNumero(m.target.value)}
         />
       </div>
     </div>
