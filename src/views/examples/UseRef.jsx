@@ -41,7 +41,7 @@ const UseRef = (props) => {
       <div className="center">
         <div>
           <span className="text">Valor:</span>
-          <span className="text">{value1}[</span>
+          <span className="text">{merge(value1,value2)}[</span>
 
           <span className="text red">{count.current}</span>
           <span className="text">]</span>
