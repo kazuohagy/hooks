@@ -17,7 +17,7 @@ const UseRef = (props) => {
 
   const merge = function (s1, s2) {
     return [...s1].map(function(e, i) {
-      return `${e}-`
+      return `${e}${s2[i] || ""}`
     }).join("")
   };
 
