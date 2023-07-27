@@ -5,9 +5,10 @@ import UseCallbackButtons from './UseCallbackButton'
 
 const UseCallback = (props) => {
     const [count, setCount] = useState(0)
-    function inc(delta){
-        setCount(count + delta)
-    }
+    const inc = useCallback(function(delta){
+        setCount(cu => cu + delta)
+    },[setCount])
+
     return (
         <div className="UseCallback">
             <PageTitle
