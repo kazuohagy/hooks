@@ -1,10 +1,13 @@
 import React from 'react'
 import PageTitle from '../../components/layout/PageTitle'
 import { useState,useCallback } from 'react'
+import UseCallbackButtons from './UseCallbackButton'
 
 const UseCallback = (props) => {
     const [count, setCount] = useState(0)
-
+    function inc(delta){
+        setCount(count + delta)
+    }
     return (
         <div className="UseCallback">
             <PageTitle
@@ -13,11 +16,7 @@ const UseCallback = (props) => {
             />
             <div className="center">
                 <span>{count}</span>
-                <div>
-                    <button className="btn" onClick={() => setCount(count + 1)}>+1</button>
-                    <button className="btn" onClick={() => setCount(count - 1)}>-1</button>
-                    
-                </div>
+                <UseCallbackButtons inc={inc}/>
             </div>
         </div>
     )
