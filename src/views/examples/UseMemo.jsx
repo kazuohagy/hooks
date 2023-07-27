@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import PageTitle from '../../components/layout/PageTitle'
-import { useState } from 'react'
+import { useState,useMemo } from 'react'
 
 function sum(a,b){
     const future = Date.now() + 2000
@@ -14,12 +14,7 @@ const UseMemo = (props) => {
     const [n2, setN2] = useState(0)
     const [n3, setN3] = useState(0)
 
-    const [result, setResult] = useState(0)
-
-    useEffect(function(){
-        setResult(sum(n1,n2))
-    },[n1,n2])
-
+    const result = useMemo(() => sum(n1, n2), [n1, n2])
 
     return (
         <div className="UseMemo">
