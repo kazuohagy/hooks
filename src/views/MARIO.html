@@ -1,0 +1,179 @@
+<div class="form-group row">
+    <script>
+            
+        </script>
+        <div class="input-group col-md-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text">Nacionalidade</label>
+                <br>
+                <div class="form-check checkboxed">
+                    <input type="radio" id="brasileiro<%=p%>" name="nac_pax<%=p%>" class="form-check-input" value="BRA" checked  onClick="changeNation('CPF',<%=p%>)" >
+                    <label class="form-check-label" for="nac_pax<%=p%>" >Brasileiro </label>
+                </div>
+                 <%if request.cookies("FCNET_MIC")("login") = "belv" or Request.QueryString("planoId") = 11760 or Request.QueryString("planoId") = 11761 or Request.QueryString("planoId") = 11762 or categoria = 7 then%>
+                <div class="form-check checkboxed" style="margin-left: 10px;">
+                    <input type="radio" id="estrangeiro<%=p%>" name="nac_pax<%=p%>" class="form-check-input" value="EST" <%if nac_pax="EST"  then response.write " checked " %>  onClick="changeNation('PASS',<%=p%>)" >
+                    <label class="form-check-label" for="nac_pax<%=p%>"> Estrangeiro </label>
+                </div>
+                <%end if%>
+            </div>
+        </div>
+            <div class="col-md-2"></div>
+
+
+            <div class="input-group col-md-4" hidden="hidden" disabled="disabled" name ="planoRecep<%=p%>" id="planoRecep<%=p%>">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect05">País Emissor do Pass.</label>
+                </div>
+                <select class="custom-select" id="origemPass<%=p%>" name="origemPass<%=p%>" hidden="hidden" disabled="disabled">
+                    <option disabled selected value="">Selecione um pais</option>
+                    <%
+                        set rsPais = objConn.execute("select * from paisesLista order by id")
+                        while not rsPais.eof
+                            Response.Write "<option value="&rsPais("cod")&">"&rsPais("nome")&"</option>"
+                            rsPais.movenext
+                        wend
+                    %>
+                </select>
+            </div> 
+
+    </div>
+    <div class="form-group row ">
+
+        <div class="input-group col-md-9">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Nome | Sobrenome</span>
+            </div>
+            <input name="nomePax<%=p%>" type="text" id="nomePax<%=p%>" aria-label="Sobrenome" class="campo form-control"  onBlur="maiuscula(this);removeAspa(this)" placeholder="Nome"  autocomplete="off" size="30" maxlength="20" value="<%=nomePax%>" required> 
+            <input name="sobrePax<%=p%>"  type="text" id="sobrePax<%=p%>" aria-label="Nome" class="campo form-control"   onBlur="maiuscula(this);removeAspa(this);" placeholder="Sobrenome"  autocomplete="off"size="30" maxlength="50 " required onChange=document.form1.sobrePax<%=p%>.style.background="#EFF4FA" value="<%=sobrePax%>" > 
+        </div>
+
+        <div class="input-group col-md-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" >Doc.:</span>
+            </div>
+            
+        
+        </div>
+
+        
+        <script>
+            
+
+        </script>
+        
+                     
+    </div>
+    <div class="form-group row justify-content-right">
+
+        <div class="input-group col-lg-6 col-md-9">
+
+            <script >									
+                
+            </script>    
+        </div>
+
+
+
+        <div class="input-group col-md-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Sexo</label>
+            </div>
+            <select name="sexoPax<%=p%>" class="custom-select campo" id="sexoPax<%=p%>" required onChange="func_fem(<%=p%>)"  >
+                <option disabled selected value=""  >Selec.</option>
+                <option value="M" <%if sexoPax = "M" then response.Write("selected")%>>Masc</option>
+                <option value="F" <%if sexoPax = "F" then response.Write("selected")%>>Fem</option>
+            </select>
+        </div> 
+
+    </div>
+    <!-- somente para o alarme -->
+    <div class="form-group row " >
+        <div class="border col-md-12" >
+            <div class="text-center" id="alerta_idade_<%=p%>"></div>
+        </div>
+    </div>
+    <!-- somente para o alarme -->
+    <div class="form-group row ">            
+        <div class="input-group col-md-3 ">
+            <div class="input-group-prepend">
+                <span class="input-group-text" for="DDDcelularPax<%=p%>"><b>DDD+Celular</b></span>
+            </div>
+                <input id="DDDcelularPax<%=p%>" name="DDDcelularPax<%=p%>" type="tel" class="campo form-control" value="<%=cel%>" size="30" maxlength="38" placeholder="(XX)00000-0000" onBlur="maiuscula(this);removeAspa(this)">
+        </div>
+        <div class="input-group col-md-3 ">
+            <div class="input-group-prepend">
+                <span class="input-group-text" for="emailPax"><b>E-mail</b></span>
+            </div>
+            
+        
+        </div> 
+                     
+    </div>            
+    <div class="form-group row ">
+        <%
+            set upRS =objConn.execute("select upgrade.id FROM planos_upgrade_tipo LEFT JOIN planos upgrade on upgrade.up_tipo_id = planos_upgrade_tipo.id where upgrade.id in (SELECT upGradeId from planos_upgrade where planoId = " & planoId & ")")
+        
+            if not upRS.EOF then 
+        %>
+        <div class="input-group col-md-6">
+            <div class="input-group-prepend">
+                <span class="input-group-text" ><b>Upgrade Cancel</b></span>
+            </div>
+            <select class="custom-select" id="planoCancelamento<%=p%>" name="planoCancelamento<%=p%>" onChange="verUpgrade(<%=p%>)" >
+                <option disabled value="">Selecione um upgrade</option>
+                <option id="0" value="0">Nenhum adicional</option>
+                <%
+                    set rsCancelamento = objConn.Execute("select *, planos.id as idezao from planos inner join valoresdiarios on valoresdiarios.planoId = planos.id where nome like '%cancelamento%' and planos.id NOT IN (SELECT plano_id FROM goAffinity_planos_nao where parceiro_id = "&request.cookies("wlabel")("revId")&") order by planos.id")
+
+                    while not rsCancelamento.eof
+                        cancelValue = forMoeda(rsCancelamento("preco"),2)
+                        cancelId = rsCancelamento("idezao")                                
+                    %>
+                    <option id="<%=cancelId%>" value="<%=cancelValue%>"<% if cancelId = upgrade_cancel then response.Write("selected")%> ><%= "US$ " & formatnumber(rsCancelamento("i_seg"),2) & " - US$ " & cancelValue%> </option>
+                <%
+                    rsCancelamento.movenext
+                    wend                           
+                %>
+            </select>
+            <input type="hidden" id="planoCancelamento_id<%=p%>" name="planoCancelamento_id<%=p%>" value="0"/>
+        </div>
+        <%  end if
+
+            set rsCovid = objConn.Execute("select planos.id as idcovid, * from planos inner join planos_upgrade on upGradeId = planos.id where nome like '%covid%' and nacionalidade = '"& planoRS("nacionalidade") & "' and planoId = '"& planoRS("id") & "' and planos.id NOT IN (SELECT plano_id FROM goAffinity_planos_nao where parceiro_id = "&request.cookies("wlabel")("revId")&") order by nacionalidade, planos.id")
+            if not rsCovid.eof then 
+        %>
+        <div class="input-group col-md-6">
+            <div class="input-group-prepend">
+                <span class="input-group-text" ><b>Upgrade Covid-19</b></span>
+            </div>                    
+            <select class="custom-select" id="planoCovid<%=p%>" name="planoCovid<%=p%>" onChange="verUpgrade(<%=p%>)">
+                <option disabled value="">Selecione um upgrade</option>
+                <option id="0" value="0">Nenhum adicional</option>    
+                <%                                                   
+                    while not rsCovid.eof
+                        covid_id = rsCovid("idcovid")                                
+                        Call CalcCovid (covid_id, planoId, destino, 0, dias)                                
+                        covidValue = priceCovid
+                %>
+                    <option id="<%=covid_id%>" value="<%=covidValue%>"<% if covid_id = upgrade_covid then response.Write("selected") end if%> >
+                        <%
+                            if planoRS("nacionalidade") = "i" then
+                                Response.write rsCovid("nome") & " - US$ " & forMoeda(covidValue,2)
+                            else
+                                Response.write rsCovid("nome") & " - R$ " & forMoeda(covidValue,2)
+                            end if
+                        %> 
+                    </option>
+                <%
+                    rsCovid.movenext
+                    wend                                                    
+                %>
+            </select>
+            <input type="hidden" id="planoCovid_id<%=p%>" name="planoCovid_id<%=p%>" value="0" />
+        </div>
+        <%  end if %>                
+    </div>               
+ 
+    </div>            
+</div>
