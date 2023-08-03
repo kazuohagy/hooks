@@ -4,7 +4,7 @@ const initialSate = {
     number:1234, 
     text: 'Context API + HOOKS MARIO'
 }
-const AppContext = React.createContext(initialSate)
+export const AppContext = React.createContext(initialSate)
 const Store =  props => {
     const [state, setState] = React.useState(initialSate)
     function updateState(key, value){
