@@ -9,8 +9,13 @@ const initialState = {
     // foco E VAI TOMA NO...
     number: 0
 }
-function reducer(state) {
-
+function reducer(state, action) {
+    switch(action.type){
+        case 'add2':
+            return {...state, number: state.number + 2 }
+        default:
+            return state
+    }
 }
 
 const UseReducer = (props) => {
