@@ -2,11 +2,15 @@ import React from 'react'
 import PageTitle from '../../components/layout/PageTitle'
 
 const initialState = {
-    cart: [],
-    products: [],
+    cart:[{}],
+    number:0,
+    products: [{},{}],
     user: null,
-    // foco...
+    // foco E VAI TOMA NO...
     number: 0
+}
+function reducer(state) {
+
 }
 
 const UseReducer = (props) => {
