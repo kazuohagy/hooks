@@ -13,6 +13,8 @@ function reducer(state, action) {
     switch(action.type){
         case 'add2':
             return {...state, number: state.number + 2 }
+        case 'numberadd':
+            return {...state, user: {name:'leonardo'} }
         default:
             return state
     }
@@ -27,7 +29,13 @@ const UseReducer = (props) => {
                 subtitle="Uma outra forma de ter estado em componentes funcionais!"
             />
             <div className="center">
+                {state.user ? <span className="text">{state.user.name}</span> : <span className="text">Sem usuario</span>
+                }
                 <span className="text">{state.number}</span>
+                <div className="">
+                    <button className="btn" onClick={()=>dispatch({type: 'numberadd'})}>login</button>
+                    <button className="btn" onClick={()=>dispatch({type: 'add2'})}>+2</button>
+                </div>
             </div>
         </div>
     )
