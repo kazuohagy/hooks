@@ -26,6 +26,9 @@ const UseReducer = (props) => {
                 title="Hook UseReducer"
                 subtitle="Uma outra forma de ter estado em componentes funcionais!"
             />
+            <div className="center">
+                <span className="text">{state.number}</span>
+            </div>
         </div>
     )
 }
