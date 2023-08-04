@@ -15,6 +15,14 @@ function reducer(state, action) {
             return {...state, number: state.number + 2 }
         case 'numberadd':
             return {...state, user: {name:action.name} }
+        case 'x7':
+            return {...state, number: state.number * 7 }
+        case 'dividi25':
+            return { ...state, number: state.number / 25}
+        case 'parseInt':
+            return {...state, number: parseInt(state.number)}
+        case 'mario':
+            return {...state, number: state.number + action.number}
         default:
             return state
     }
@@ -34,7 +42,11 @@ const UseReducer = (props) => {
                 <span className="text">{state.number}</span>
                 <div className="">
                     <button className="btn" onClick={()=>dispatch({type: 'numberadd', name: 'Mario'})}>login</button>
+                    <button className="btn" onClick={()=>dispatch({type: 'mario', number: 10})}>mario</button>
                     <button className="btn" onClick={()=>dispatch({type: 'add2'})}>+2</button>
+                    <button className="btn" onClick={()=>dispatch({type: 'x7'})}>x7</button>
+                    <button className="btn" onClick={()=>dispatch({type: 'dividi25'})}>/25</button>
+                    <button className="btn" onClick={()=>dispatch({type: 'parseInt'})}>transforma inteiro</button>
                 </div>
             </div>
         </div>
