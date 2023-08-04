@@ -19,6 +19,7 @@ function reducer(state, action) {
 }
 
 const UseReducer = (props) => {
+    const [state, dispatch] = React.useReducer(reducer, initialState)
     return (
         <div className="UseReducer">
             <PageTitle
