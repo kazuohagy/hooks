@@ -14,7 +14,7 @@ function reducer(state, action) {
         case 'add2':
             return {...state, number: state.number + 2 }
         case 'numberadd':
-            return {...state, user: {name:'leonardo'} }
+            return {...state, user: {name:action.name} }
         default:
             return state
     }
@@ -33,7 +33,7 @@ const UseReducer = (props) => {
                 }
                 <span className="text">{state.number}</span>
                 <div className="">
-                    <button className="btn" onClick={()=>dispatch({type: 'numberadd'})}>login</button>
+                    <button className="btn" onClick={()=>dispatch({type: 'numberadd', name: 'Mario'})}>login</button>
                     <button className="btn" onClick={()=>dispatch({type: 'add2'})}>+2</button>
                 </div>
             </div>
