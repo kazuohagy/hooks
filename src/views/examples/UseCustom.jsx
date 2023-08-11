@@ -8,6 +8,9 @@ const UseRef = (props) => {
     const [count, inc, dec] = useCounter()
     const url = 'http://files.cod3r.com.br/curso-react/estados.json'
     const response = useFetch(url)
+    function showStates(states) {
+        return states.map(state => <li key={state.nome}>{state.nome} - {state.sigla}</li>)
+    }
     return (
         <div className="UseCustom">
             <PageTitle
@@ -24,7 +27,9 @@ const UseRef = (props) => {
             </div>
             <SectionTitle title="Exercício #02"/>
             <div className="center">
-                
+                <ul>
+                {response.data ? showStates(response.data) : false}
+                </ul>
             </div>
         </div>
     )
