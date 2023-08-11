@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Getting Started with Create React App 🐉
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -69,5 +69,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-fatorial infinito :) \
+# fatorial infinito ♨️
+
 ![image](https://user-images.githubusercontent.com/73189635/183552802-9c42f2c5-5fb5-4fdd-84b0-21c0c92b020d.png)
+
+# fetch api 🧙‍♂️
+
+![image](https://github.com/kazuohagy/hooks/assets/73189635/54ff3dfe-af8c-4553-b552-0c4a0bb7d88d)
+
